@@ -1,10 +1,10 @@
-import { useEffect, useState } from 'react'
+/* import { useEffect, useState } from 'react'
 import { Spin } from 'antd'
 import swService from '../../services/swapi'
-import Character from '../../components/Character'
+import Character from '../../components/Character' */
 
-function SWCharacters() {
-  const [isLoading, setIsLoading] = useState(false)
+function Cobros() {
+/*   const [isLoading, setIsLoading] = useState(false)
   const [characters, setCharacters] = useState([])
   useEffect(() => {
     const fetchData = async () => {
@@ -15,19 +15,19 @@ function SWCharacters() {
       setIsLoading(false)
     }
     fetchData()
-  }, [])
+  }, []) */
   return (
     <>
-      <h1>Listado de personajes de Star Wars</h1>
-      {isLoading ? (
+      <h1>Implementar cobros</h1>
+{/*       {isLoading ? (
         <Spin tip="Cargando listado..." size="large">
           <div className="content" />
         </Spin>
       ) : (
         characters.map((x) => <Character key={x.url} {...x} />)
-      )}
+      )} */}
     </>
   )
 }
 
-export default SWCharacters
+export default Cobros

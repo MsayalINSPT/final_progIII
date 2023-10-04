@@ -1,7 +1,8 @@
 import { useEffect } from 'react'
-import swService from '../../services/swapi'
+import swService from '../../../services/swapi'
 
-function Home() {
+
+function Alta_mascota() {
   useEffect(() => {
     const fetchData = async () => {
       const response = await swService.getPersonById(1)
@@ -10,7 +11,7 @@ function Home() {
     fetchData()
   }, [])
 
-  return <h1>Hola clase de Programación III</h1>
+  return <h1>Implementar alta mascota</h1>
 }
 
-export default Home
+export default Alta_mascota
