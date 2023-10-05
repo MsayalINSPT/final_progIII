@@ -5,11 +5,16 @@ import Layout from './modules/Layout'
 import NotFound from './modules/Recepcion/NotFound'
 import Cobros from './modules/Recepcion/Cobros'
 import Logout from './modules/Recepcion/Logout'
+import Login from './modules/Login'
+//import { Formulario } from './components/Formulario'
 
 function App() {
   return (
     <div className="App">
-      <BrowserRouter>
+
+      <Login />
+
+{/*       <BrowserRouter>
         <Routes>
           <Route element={<Layout />}>
             <Route path="Recepcion/Alta_mascota" element={<Alta_mascota />} />
@@ -19,7 +24,7 @@ function App() {
             <Route path="*" element={<NotFound />} />
           </Route>
         </Routes>
-      </BrowserRouter>
+      </BrowserRouter> */}
     </div>
   )
 }
