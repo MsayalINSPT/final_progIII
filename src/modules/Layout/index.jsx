@@ -27,7 +27,8 @@ const items = [
   getItem(<Link to="Recepcion/Alta_mascota"> Alta mascota </Link>, '1', <UserAddOutlined />),
   getItem(<Link to="Recepcion/Turnos"> Asignar turnos </Link>, '2', <TagOutlined />),
   getItem(<Link to="Recepcion/Cobros"> Cobrar </Link>, '3', <HomeOutlined />),
-  getItem(<Link to="Recepcion/Logout"> Logout </Link>, '4', <CloseSquareOutlined />)
+  getItem(<Link to="Recepcion/Logout"> Logout </Link>, '4', <CloseSquareOutlined />),
+
 ]
 
 const App = () => {
