@@ -3,8 +3,8 @@ import { Outlet } from 'react-router-dom'
 import { Link } from 'react-router-dom'
 import {
 
-  HomeOutlined,
-  TagOutlined,
+  DollarOutlined,
+  FileDoneOutlined,
   UserAddOutlined,
   CloseSquareOutlined
 
@@ -27,8 +27,8 @@ function getItem(label, key, icon, children) {
 
 const items = [
   getItem(<Link to="Recepcion/Alta_mascota"> Alta mascota </Link>, '1', <UserAddOutlined />),
-  getItem(<Link to="Recepcion/Turnos"> Asignar turnos </Link>, '2', <TagOutlined />),
-  getItem(<Link to="Recepcion/Cobros"> Cobrar </Link>, '3', <HomeOutlined />),
+  getItem(<Link to="Recepcion/Turnos"> Asignar turnos </Link>, '2', <FileDoneOutlined />),
+  getItem(<Link to="Recepcion/Cobros"> Cobrar </Link>, '3', <DollarOutlined />),
   getItem(<Link to="Login/Logout"> Logout </Link>, '4', <CloseSquareOutlined />),
 
 ]

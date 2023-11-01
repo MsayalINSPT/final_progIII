@@ -3,10 +3,11 @@ import { Outlet } from 'react-router-dom'
 import { Link } from 'react-router-dom'
 import {
 
-  HomeOutlined,
-  TagOutlined,
-  UserAddOutlined,
-  CloseSquareOutlined
+
+  FileDoneOutlined,
+  CloseSquareOutlined,
+  HistoryOutlined,
+  DollarOutlined
 
 } from '@ant-design/icons'
 import { Layout, Menu, theme } from 'antd'
@@ -23,20 +24,14 @@ function getItem(label, key, icon, children) {
   }
 }
 
+<HistoryOutlined />
 
 
-/* const items = [
-  getItem(<Link to="Recepcion/Alta_mascota"> Alta mascota </Link>, '1', <UserAddOutlined />),
-  getItem(<Link to="Recepcion/Turnos"> Asignar turnos </Link>, '2', <TagOutlined />),
-  getItem(<Link to="Recepcion/Cobros"> Cobrar </Link>, '3', <HomeOutlined />),
-  getItem(<Link to="Recepcion/Logout"> Logout </Link>, '4', <CloseSquareOutlined />),
-
-] */
 
 const items = [
-  getItem(<Link to="Veterinario/CargarPago"> Cargar Pago </Link>, '1', <UserAddOutlined />),
-  getItem(<Link to="Veterinario/Historial"> Historial </Link>, '2', <UserAddOutlined />),
-  getItem(<Link to="Veterinario/Historial"> Informe </Link>, '3', <CloseSquareOutlined />),
+  getItem(<Link to="Veterinario/Historial"> Historial </Link>, '1', <HistoryOutlined />),
+  getItem(<Link to="Veterinario/Informe"> Informe </Link>, '2', <FileDoneOutlined />),
+  getItem(<Link to="Veterinario/Recaudacion"> Recaudacion </Link>, '3', <DollarOutlined />),
   getItem(<Link to="Login/Logout"> Logout </Link>, '4', <CloseSquareOutlined />),
 
 

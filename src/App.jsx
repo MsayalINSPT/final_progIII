@@ -6,7 +6,7 @@ import LayoutVete from './modules/LayoutVete'
 import NotFound from './modules/Recepcion/NotFound'
 import Cobros from './modules/Recepcion/Cobros'
 import Logout from './modules/Login/Logout'
-import Pagos from './modules/Veterinario/CargarPago'
+import Pagos, { InformePaciente } from './modules/Veterinario/Informe'
 import Historial from './modules/Veterinario/Historial'
 import Login from './modules/Login'
 
@@ -15,8 +15,9 @@ import { useState } from 'react'
 
 //import { Formulario } from './components/Formulario'
 import { validarUsuario } from './components/validacionUsuarios'
+import RecaudacionVeterinaria from './modules/Veterinario/Recaudacion'
 
-function recepcion(rol) {
+function recepcion() {
   return (
     <BrowserRouter>
       <Routes>
@@ -38,8 +39,9 @@ function veterinario() {
     <BrowserRouter>
       <Routes>
         <Route element={<LayoutVete/>}>
-          <Route path="Veterinario/CargarPago" element={<Pagos />} />
           <Route path="Veterinario/Historial" element={<Historial />} />
+          <Route path="Veterinario/Informe" element={<InformePaciente />} />
+          <Route path="Veterinario/Recaudacion" element={<RecaudacionVeterinaria />} />
           <Route path="Login/Logout" element={<Logout />} />
           <Route path="*" element={<NotFound />} />
         </Route>
@@ -50,8 +52,7 @@ function veterinario() {
 
 function App() {
   const [user, setUser] = useState([''])
-  const [rol, setRol] = useState('rece')
-
+  const [rol, setRol] = useState('')
 
 
 
@@ -59,7 +60,7 @@ function App() {
     <div className="App">
       {user == '' && <Login setUser={setUser} />}
 
-
+ 
 
       {validarUsuario(user) == 'rece' && recepcion()}
 
