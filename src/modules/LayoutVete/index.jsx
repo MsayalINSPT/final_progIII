@@ -25,20 +25,22 @@ function getItem(label, key, icon, children) {
 
 
 
-const items = [
+/* const items = [
   getItem(<Link to="Recepcion/Alta_mascota"> Alta mascota </Link>, '1', <UserAddOutlined />),
   getItem(<Link to="Recepcion/Turnos"> Asignar turnos </Link>, '2', <TagOutlined />),
   getItem(<Link to="Recepcion/Cobros"> Cobrar </Link>, '3', <HomeOutlined />),
-  getItem(<Link to="Login/Logout"> Logout </Link>, '4', <CloseSquareOutlined />),
-
-]
-
-/* const items = [
-  getItem(<Link to="Veterinario/CargarPago"> Cargar Pago </Link>, '1', <UserAddOutlined />),
-  getItem(<Link to="Veterinario/Historial"> Historial </Link>, '2', <UserAddOutlined />)
-
+  getItem(<Link to="Recepcion/Logout"> Logout </Link>, '4', <CloseSquareOutlined />),
 
 ] */
+
+const items = [
+  getItem(<Link to="Veterinario/CargarPago"> Cargar Pago </Link>, '1', <UserAddOutlined />),
+  getItem(<Link to="Veterinario/Historial"> Historial </Link>, '2', <UserAddOutlined />),
+  getItem(<Link to="Veterinario/Historial"> Informe </Link>, '3', <CloseSquareOutlined />),
+  getItem(<Link to="Login/Logout"> Logout </Link>, '4', <CloseSquareOutlined />),
+
+
+]
 
 const App = () => {
 
@@ -75,7 +77,7 @@ const App = () => {
             alignItems: 'center',
           }}
         >
-          <h1>Recepcion</h1>
+          <h1>Veterinario</h1>
         </Header>
         <Content
           style={{

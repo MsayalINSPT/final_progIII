@@ -2,6 +2,9 @@
 
 
 export function Pagos() {
+
+console.log("hola")
+
   return (
     <div>
       <h1>Implementar Pagos</h1>

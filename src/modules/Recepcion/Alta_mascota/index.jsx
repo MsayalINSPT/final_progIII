@@ -2,7 +2,7 @@ import { useEffect } from 'react'
 import swService from '../../../services/swapi'
 
 
-function Alta_mascota() {
+function AltaMascota() {
   useEffect(() => {
     const fetchData = async () => {
       const response = await swService.getPersonById(1)
@@ -14,4 +14,4 @@ function Alta_mascota() {
   return <h1>Implementar alta mascota</h1>
 }
 
-export default Alta_mascota
+export default AltaMascota
