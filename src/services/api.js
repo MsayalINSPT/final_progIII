@@ -2,7 +2,7 @@ import axios from 'axios'
 // import localStorage from './localStorage'
 
 const api = axios.create({
-  baseURL: 'https://swapi.dev/api',
+  baseURL: 'http://localhost:4000/',
   timeout: 1000 * 15, // 15 sec
   // headers: {
   //   Accept: 'application/json',

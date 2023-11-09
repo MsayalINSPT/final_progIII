@@ -10,12 +10,13 @@ import Pagos, { InformePaciente } from './modules/Veterinario/Informe'
 import Historial from './modules/Veterinario/Historial'
 import Login from './modules/Login'
 
-import { useState } from 'react'
-
+import { useState, useEffect } from 'react'
 
 //import { Formulario } from './components/Formulario'
-import { validarUsuario } from './components/validacionUsuarios'
+
 import RecaudacionVeterinaria from './modules/Veterinario/Recaudacion'
+
+
 
 function recepcion() {
   return (
@@ -34,14 +35,16 @@ function recepcion() {
 }
 
 function veterinario() {
-  
   return (
     <BrowserRouter>
       <Routes>
-        <Route element={<LayoutVete/>}>
+        <Route element={<LayoutVete />}>
           <Route path="Veterinario/Historial" element={<Historial />} />
           <Route path="Veterinario/Informe" element={<InformePaciente />} />
-          <Route path="Veterinario/Recaudacion" element={<RecaudacionVeterinaria />} />
+          <Route
+            path="Veterinario/Recaudacion"
+            element={<RecaudacionVeterinaria />}
+          />
           <Route path="Login/Logout" element={<Logout />} />
           <Route path="*" element={<NotFound />} />
         </Route>
@@ -49,22 +52,28 @@ function veterinario() {
     </BrowserRouter>
   )
 }
-
+//------------------------------- APP -----------------------------------
 function App() {
-  const [user, setUser] = useState([''])
-  const [rol, setRol] = useState('')
+  const [user, setUser] = useState({
+    email: '',
+    password: '',
+    rol: '',
+    token: '',
+  })
 
+  useEffect(() => {
+    console.log(user)
+    console.log(user.rol)
+  }, [user])
 
 
   return (
     <div className="App">
-      {user == '' && <Login setUser={setUser} />}
+      {user.rol === '' && <Login setUser={setUser} />}
 
- 
+      {user.rol === 'recepcion' && recepcion()}
 
-      {validarUsuario(user) == 'rece' && recepcion()}
-
-      {validarUsuario(user) == 'vete' && veterinario()}
+      {user.rol === 'veterinario' && veterinario()}
     </div>
   )
 }

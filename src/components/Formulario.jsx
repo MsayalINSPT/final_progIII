@@ -1,31 +1,33 @@
-import './Formulario.css'
-import { useState } from 'react'
+import './Formulario.css';
+import { useState } from 'react';
+import { validarUsuario } from './validacionUsuarios';
 
 export function Formulario({ setUser }) {
-  const [nombre, setNombre] = useState('')
-  const [contrasenia, setContrasenia] = useState('')
-  const [error, setError] = useState(false)
+  const [nombre, setNombre] = useState('');
+  const [contrasenia, setContrasenia] = useState('');
+  const [error, setError] = useState(false);
 
-  const handleSubmit = (e) => {
-    e.preventDefault()
+  const handleSubmit = async (e) => {
+    e.preventDefault();
 
     if (nombre === '' || contrasenia === '') {
-      setError(true)
-      return
+      setError(true);
+      return;
     }
 
-    setError(false)
-    setNombre([nombre])
+    setError(false);
+    const user = {
+      email: nombre,
+      password: contrasenia,
+      rol: '',
+      token: '',
+    };
 
-    setContrasenia([contrasenia])
+    // Llama a validarUsuario y espera hasta que se complete la función
+    await validarUsuario({ user });
 
-    let user = {
-        usuario: nombre,
-        pass: contrasenia
-    }
-    //console.log(user.usuario + "  " + user.pass)
-    setUser([user])
-  }
+    setUser(user);
+  };
 
   return (
     <section>
@@ -36,15 +38,14 @@ export function Formulario({ setUser }) {
           value={nombre}
           onChange={(e) => setNombre(e.target.value)}
         />
-
         <input
           type="password"
           value={contrasenia}
           onChange={(e) => setContrasenia(e.target.value)}
         />
-        <button>Iniciar sesion</button>
+        <button>Iniciar sesión</button>
       </form>
       {error && <p className="msg">Todos los campos son obligatorios</p>}
     </section>
-  )
+  );
 }
