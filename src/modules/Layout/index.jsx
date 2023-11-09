@@ -33,12 +33,7 @@ const items = [
 
 ]
 
-/* const items = [
-  getItem(<Link to="Veterinario/CargarPago"> Cargar Pago </Link>, '1', <UserAddOutlined />),
-  getItem(<Link to="Veterinario/Historial"> Historial </Link>, '2', <UserAddOutlined />)
 
-
-] */
 
 const App = () => {
 

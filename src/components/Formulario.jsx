@@ -35,18 +35,17 @@ export function Formulario({ setUser }) {
 
   return (
     <section>
-
-        <Spin
-          spinning={isLoading}
-          size="large"
-          style={{
-            display: 'flex',
-            justifyContent: 'center',
-            alignItems: 'center',
-          }}
-        />
-   
       <h1 className="tituloLogin">Login</h1>
+      <Spin
+        spinning={isLoading}
+        size="large"
+        style={{
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+        }}
+      />
+
       <form className="formulario" onSubmit={handleSubmit}>
         <input
           type="text"
