@@ -8,9 +8,6 @@ const api = axios.create({
   //   Accept: 'application/json',
   //   'Content-Type': 'application/json',
   // },
-
-
-  
 })
 
 api.interceptors.request.use(
@@ -27,9 +24,15 @@ api.interceptors.request.use(
 
 api.interceptors.response.use(
   (response) => response.data, // Do something with response data
-  (error) =>
+  (error) => {
+    if (error.response.status === 401) {
+      console.log('error usuario invalido')
+    }
+
     // Do something with response error
-    Promise.reject(console.log(error))
+    //return Promise.reject(console.log('error'))
+    return error.response.status
+  }
 )
 
 export default api

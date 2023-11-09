@@ -18,7 +18,11 @@ import RecaudacionVeterinaria from './modules/Veterinario/Recaudacion'
 
 
 
-function recepcion() {
+function recepcion(user) {
+
+
+
+
   return (
     <BrowserRouter>
       <Routes>
@@ -34,7 +38,7 @@ function recepcion() {
   )
 }
 
-function veterinario() {
+function veterinario(user) {
   return (
     <BrowserRouter>
       <Routes>
@@ -62,8 +66,8 @@ function App() {
   })
 
   useEffect(() => {
-    console.log(user)
-    console.log(user.rol)
+     console.log(user)
+  
   }, [user])
 
 
@@ -71,9 +75,9 @@ function App() {
     <div className="App">
       {user.rol === '' && <Login setUser={setUser} />}
 
-      {user.rol === 'recepcion' && recepcion()}
+      {user.rol === 'recepcion' && recepcion(user)}
 
-      {user.rol === 'veterinario' && veterinario()}
+      {user.rol === 'veterinario' && veterinario(user)}
     </div>
   )
 }

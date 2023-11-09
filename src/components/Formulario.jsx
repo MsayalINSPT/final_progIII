@@ -8,6 +8,7 @@ export function Formulario({ setUser }) {
   const [contrasenia, setContrasenia] = useState('')
   const [error, setError] = useState(false)
   const [isLoading, setIsLoading] = useState(false)
+  const [error401, setError401] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault()
@@ -24,10 +25,10 @@ export function Formulario({ setUser }) {
       rol: '',
       token: '',
     }
-
-    // Llama a validarUsuario y espera hasta que se complete la función
     setIsLoading(true)
+    
     await validarUsuario({ user })
+    
     setIsLoading(false)
 
     setUser(user)

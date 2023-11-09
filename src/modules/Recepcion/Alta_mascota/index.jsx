@@ -1,17 +1,153 @@
-import { useEffect } from 'react'
-import swService from '../../../services/swapi'
+import React from 'react';
+import { Form, Input, Button, Select, InputNumber } from 'antd';
 
+const { Option } = Select;
 
 function AltaMascota() {
-  useEffect(() => {
-    const fetchData = async () => {
-      const response = await swService.getPersonById(1)
-      console.log(response)
-    }
-    fetchData()
-  }, [])
+  const onFinish = (values) => {
+    // Aquí puedes realizar acciones como enviar los datos al backend
+    console.log('Datos del formulario:', values);
+  };
 
-  return <h1>Implementar alta mascota</h1>
+  return (
+    <Form
+      name="wrap"
+      labelCol={{
+        flex: '110px',
+      }}
+      labelAlign="left"
+      labelWrap
+      wrapperCol={{
+        flex: 1,
+      }}
+      colon={false}
+      style={{
+        maxWidth: 600,
+      }}
+      onFinish={onFinish}
+    >
+      <Form.Item
+        label="Nombre"
+        name="name"
+        rules={[
+          {
+            required: true,
+            message: 'Por favor, ingresa el nombre',
+          },
+        ]}
+      >
+        <Input />
+      </Form.Item>
+
+      <Form.Item
+        label="Apellido"
+        name="ape"
+        rules={[
+          {
+            required: true,
+            message: 'Por favor, ingresa el apellido',
+          },
+        ]}
+      >
+        <Input />
+      </Form.Item>
+
+      <Form.Item
+        label="DNI"
+        name="dni"
+        rules={[
+          {
+            required: true,
+            message: 'Por favor, ingresa el DNI',
+          },
+        ]}
+      >
+        <Input />
+      </Form.Item>
+
+      <Form.Item
+        label="Email"
+        name="email"
+        rules={[
+          {
+            required: true,
+            message: 'Por favor, ingresa el email',
+          },
+          {
+            type: 'email',
+            message: 'Ingresa un email válido',
+          },
+        ]}
+      >
+        <Input />
+      </Form.Item>
+
+      <Form.Item
+        label="Teléfono"
+        name="telefono"
+        rules={[
+          {
+            required: true,
+            message: 'Por favor, ingresa el teléfono',
+          },
+        ]}
+      >
+        <Input />
+      </Form.Item>
+
+      <Form.Item
+        label="Tipo Mascota"
+        name="especie"
+        rules={[
+          {
+            required: true,
+            message: 'Tipo mascota',
+          },
+        ]}
+      >
+        <Select>
+          <Option value="perro">Perro</Option>
+          <Option value="gato">Gato</Option>
+          {/* Agrega más opciones según tus necesidades */}
+        </Select>
+      </Form.Item>
+
+      <Form.Item
+        label="Sexo"
+        name="sexo"
+        rules={[
+          {
+            required: true,
+            message: 'Por favor, selecciona el sexo',
+          },
+        ]}
+      >
+        <Select>
+          <Option value="macho">Macho</Option>
+          <Option value="hembra">Hembra</Option>
+        </Select>
+      </Form.Item>
+
+      <Form.Item
+        label="Edad"
+        name="edad"
+        rules={[
+          {
+            required: true,
+            message: 'Por favor, ingresa la edad',
+          },
+        ]}
+      >
+        <InputNumber min={1} />
+      </Form.Item>
+
+      <Form.Item label=" ">
+        <Button type="primary" htmlType="submit">
+          Alta
+        </Button>
+      </Form.Item>
+    </Form>
+  );
 }
 
-export default AltaMascota
+export default AltaMascota;
