@@ -1,4 +1,5 @@
-import React from 'react'
+
+import { useState } from 'react'
 import { Form, Input, DatePicker, Button } from 'antd'
 import swService from '../../../services/swapi'
 
@@ -7,6 +8,7 @@ import swService from '../../../services/swapi'
 
 
 function Turnos() {
+  const [responseText, setResponseText] = useState('');
 
   const onFinish = (values) => {
     console.log(JSON.stringify(values))
@@ -15,6 +17,7 @@ function Turnos() {
  
       const response = await swService.createTurno(values)
       console.log('Respuesta del server',response)
+      setResponseText(`Respuesta del servidor: ${JSON.stringify(response)}`)
 
     }
     fetchData()
@@ -24,6 +27,11 @@ function Turnos() {
 
 
   return (
+
+<div>
+
+
+
     <Form
       name="nuevoTurnoForm"
       onFinish={onFinish}
@@ -83,6 +91,10 @@ function Turnos() {
         </Button>
       </Form.Item>
     </Form>
+
+    {responseText && <div>{responseText}</div>}
+
+    </div>
   )
 }
 
