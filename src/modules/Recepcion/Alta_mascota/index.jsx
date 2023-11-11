@@ -1,6 +1,6 @@
 
 import { Form, Input, Button, Select, InputNumber } from 'antd';
-import { Spin } from 'antd'
+
 import swService from '../../../services/swapi'
 
 const { Option } = Select;
@@ -14,11 +14,10 @@ function AltaMascota() {
     console.log('Datos del formulario:', values);
 
     const fetchData = async () => {
-      //setIsLoading(true)
+ 
       const response = await swService.createCliente(values)
       console.log('Respuesta del server',response)
-      //setCharacterInfo(response)
-      //setIsLoading(false)
+
     }
     fetchData()
 

@@ -1,14 +1,27 @@
+import React from 'react'
+import { Form, Input, DatePicker, Button } from 'antd'
+import swService from '../../../services/swapi'
 
-import React from 'react';
-import { Form, Input, DatePicker, Button } from 'antd';
+
+
 
 
 function Turnos() {
 
   const onFinish = (values) => {
-    // Aquí puedes manejar la lógica para enviar los datos del formulario al backend
-    console.log('Formulario enviado:', values);
+    console.log(JSON.stringify(values))
+
+    const fetchData = async () => {
+ 
+      const response = await swService.createTurno(values)
+      console.log('Respuesta del server',response)
+
+    }
+    fetchData()
+
   }
+
+
 
   return (
     <Form
@@ -21,6 +34,19 @@ function Turnos() {
         span: 16,
       }}
     >
+      <Form.Item
+        label="Fecha del turno"
+        name="fechaTurno"
+        rules={[
+          {
+            required: true,
+            message: 'Por favor, selecciona la fecha del turno',
+          },
+        ]}
+      >
+        <DatePicker showTime format="YYYY-MM-DD HH:mm" />
+      </Form.Item>
+
       <Form.Item
         label="Paciente"
         name="nombrePaciente"
@@ -35,25 +61,11 @@ function Turnos() {
       </Form.Item>
 
       <Form.Item
-        label="Fecha del turno"
-        name="fechaTurno"
-        rules={[
-          {
-            required: true,
-            message: 'Por favor, selecciona la fecha del turno',
-          },
-        ]}
-      >
-        <DatePicker showTime format="YYYY-MM-DD HH:mm:ss" />
-      </Form.Item>
-
-      <Form.Item
         label="Descripción"
         name="descripcion"
         rules={[
           {
-            required: true,
-            message: 'Por favor, ingresa una descripción del turno',
+            required: false,
           },
         ]}
       >
