@@ -3,7 +3,7 @@ import AltaMascota from './modules/Recepcion/Alta_mascota'
 import Turnos from './modules/Recepcion/Turnos'
 import Layout from './modules/Layout'
 import LayoutVete from './modules/LayoutVete'
-import NotFound from './modules/Recepcion/NotFound'
+import NotFound from './modules/NotFound'
 import Cobros from './modules/Recepcion/Cobros'
 import Logout from './modules/Login/Logout'
 import Pagos, { InformePaciente } from './modules/Veterinario/Informe'
@@ -16,13 +16,7 @@ import { useState, useEffect } from 'react'
 
 import RecaudacionVeterinaria from './modules/Veterinario/Recaudacion'
 
-
-
 function recepcion(user) {
-
-
-
-
   return (
     <BrowserRouter>
       <Routes>
@@ -66,10 +60,8 @@ function App() {
   })
 
   useEffect(() => {
-     console.log(user)
-  
+    console.log(user)
   }, [user])
-
 
   return (
     <div className="App">
