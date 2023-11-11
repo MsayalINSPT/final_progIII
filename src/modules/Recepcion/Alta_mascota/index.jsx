@@ -1,13 +1,29 @@
 
 import { Form, Input, Button, Select, InputNumber } from 'antd';
+import { Spin } from 'antd'
+import swService from '../../../services/swapi'
 
 const { Option } = Select;
 
 function AltaMascota() {
+
+
+
   const onFinish = (values) => {
     // Aquí puedes realizar acciones como enviar los datos al backend
     console.log('Datos del formulario:', values);
-  };
+
+    const fetchData = async () => {
+      //setIsLoading(true)
+      const response = await swService.createCliente(values)
+      console.log('Respuesta del server',response)
+      //setCharacterInfo(response)
+      //setIsLoading(false)
+    }
+    fetchData()
+
+  }
+
 
   return (
     <Form
@@ -113,6 +129,20 @@ function AltaMascota() {
       </Form.Item>
 
       <Form.Item
+        label="Nombre Mascota"
+        name="nom"
+        rules={[
+          {
+            required: true,
+            message: 'Por favor, ingresa el Nombre',
+          },
+        ]}
+      >
+        <Input />
+      </Form.Item>
+
+
+      <Form.Item
         label="Sexo"
         name="sexo"
         rules={[
@@ -140,6 +170,9 @@ function AltaMascota() {
       >
         <InputNumber min={1} />
       </Form.Item>
+
+
+
 
       <Form.Item label=" ">
         <Button type="primary" htmlType="submit">
