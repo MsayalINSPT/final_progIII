@@ -1,40 +1,21 @@
 import { useState } from 'react'
 import { Form, Input, DatePicker, Button } from 'antd'
-import { Table } from 'antd'
 import dayjs from 'dayjs'
 import swService from '../../../services/swapi'
+import { Outlet } from 'react-router-dom';
 
-const columns = [
-  {
-    title: 'Fecha del Turno',
-    dataIndex: 'fechaTurno',
-    key: 'fechaTurno',
-  },
-  {
-    title: 'Nombre del Paciente',
-    dataIndex: 'nombrePaciente',
-    key: 'nombrePaciente',
-  },
-  {
-    title: 'Descripción',
-    dataIndex: 'descripcion',
-    key: 'descripcion',
-  },
-  {
-    title: 'Estado',
-    dataIndex: 'estado',
-    key: 'estado',
-  },
-]
+
 
 function Turnos() {
   const [responseText, setResponseText] = useState('')
-  const [turnos, setTurnos] = useState([''])
+ 
 
   const onFinish = (values) => {
     values.estado = 'pendiente'
     const fechaISO8601 = values.fechaTurno
-    values.fechaTurno = dayjs(fechaISO8601).format('YYYY-MM-DD HH:mm')
+    values.fechaTurno = dayjs(fechaISO8601).format('YYYY-MM-DD')
+    values.horaTurno = dayjs(fechaISO8601).format('HH:mm')
+    console.log(values)
 
     const fetchData = async () => {
       const response = await swService.createTurno(values)
@@ -44,27 +25,11 @@ function Turnos() {
     fetchData()
   }
 
-  const onClick = () => {
-    const fetchData = async () => {
-      const response = await swService.getAllTurnos()
-      console.log(response)
-      setTurnos(response)
-    }
-    fetchData()
-  }
+
 
   return (
     <div>
-      <Button type="primary" onClick={() => onClick()}>
-        Buscar turnos
-      </Button>
-      <Table
-        dataSource={turnos}
-        columns={columns}
-        rowKey="_id"
-        pagination={{ pageSize: 10 }}
-        bordered
-      />
+
 
       <Form
         name="nuevoTurnoForm"
@@ -127,6 +92,7 @@ function Turnos() {
       </Form>
 
       {responseText && <div>{responseText}</div>}
+      <Outlet />
     </div>
   )
 }
