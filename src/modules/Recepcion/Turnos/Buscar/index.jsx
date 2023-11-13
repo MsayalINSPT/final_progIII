@@ -1,5 +1,5 @@
 import { Table, Button, DatePicker } from 'antd'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import swService from '../../../../services/swapi'
 
 const columns = [
@@ -35,8 +35,19 @@ const columns = [
   },
 ]
 
+
+
 function BuscarTurno() {
   const [turnos, setTurnos] = useState([''])
+  const [refresh, setRefresh] = useState(false)
+
+  useEffect(() => {
+    onClick()
+    setRefresh(false)
+    const tokenUsuario = localStorage.getItem('miToken')
+    console.log(tokenUsuario)
+    //console.log(turnos)
+  }, [refresh])
 
   const onClick = () => {
     const fetchData = async () => {

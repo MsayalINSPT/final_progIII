@@ -4,10 +4,10 @@ import axios from 'axios'
 const api = axios.create({
   baseURL: 'http://localhost:4000/',
   timeout: 1000 * 15, // 15 sec
-  // headers: {
-  //   Accept: 'application/json',
-  //   'Content-Type': 'application/json',
-  // },
+  headers: {
+    Accept: 'application/json',
+    'Content-Type': 'application/json',
+  },
 })
 
 api.interceptors.request.use(
@@ -17,6 +17,14 @@ api.interceptors.request.use(
     //   // eslint-disable-next-line no-param-reassign
     //   config.headers.common.Authorization = `${data.token}`
     // }
+
+    const tokenUsuario = localStorage.getItem('miToken')
+    console.log(tokenUsuario)
+    if (tokenUsuario) {
+      
+      //config.headers.common.Authorization = `${tokenUsuario}`
+      config.headers['Authorization'] = `Bearer ${tokenUsuario}`
+    }
     return config
   },
   (error) => Promise.reject(error) // Do something with request error

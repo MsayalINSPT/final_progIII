@@ -23,8 +23,8 @@ function recepcion(/* user */) {
   return (
     <BrowserRouter>
       <Routes>
-        <Route element={<Layout />}>
-          <Route path="Recepcion/Alta_mascota" element={<AltaMascota />} />
+        <Route element={<Layout />}> 
+          <Route path="" default element={<AltaMascota />} />
 
           <Route path="Recepcion/Turnos" element={<Turnos />} />
           <Route path="Recepcion/Turnos/Buscar" element={<BuscarTurno />} />
@@ -70,7 +70,9 @@ function App() {
   })
 
   useEffect(() => {
-    console.log(user)
+    //console.log(user.token)
+    localStorage.setItem('miToken', user.token);
+
   }, [user])
 
   return (

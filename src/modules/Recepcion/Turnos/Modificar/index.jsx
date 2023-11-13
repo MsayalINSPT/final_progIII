@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import { Button } from 'antd'
 import swService from '../../../../services/swapi'
-import { Space, Table, Modal, TimePicker, DatePicker, Select } from 'antd'
+import { Space, Table, Modal, TimePicker, DatePicker, /* Select */ } from 'antd'
 
 function ModificarTurno() {
   const [turnos, setTurnos] = useState([])
@@ -9,6 +9,7 @@ function ModificarTurno() {
   const [isModalOpen, setIsModalOpen] = useState(false)
   const [hora, setHora] = useState('')
   const [fecha, setFecha] = useState('')
+  const [id, setId] = useState('')
 
   const columns = [
     {
@@ -23,8 +24,8 @@ function ModificarTurno() {
     },
     {
       title: 'Hora',
-      dataIndex: 'horaTueno',
-      key: 'horaTueno',
+      dataIndex: 'horaTurno',
+      key: 'horaTurno',
     },
     {
       title: 'Nombre',
@@ -41,19 +42,24 @@ function ModificarTurno() {
       key: 'action',
       render: (_, record) => (
         <Space size="middle">
-          <a onClick={() => showModal()}> Editar </a>
+          <a onClick={() => showModal(record._id)}> Editar </a>
           <a onClick={() => borrar(record._id)}>Borrar</a>
         </Space>
       ),
     },
   ]
 
-  const showModal = () => {
+  const showModal = (id) => {
+    setId(id)
     setIsModalOpen(true)
   }
 
   const handleOk = () => {
     setIsModalOpen(false)
+    editar(id,fecha,hora)
+    setRefresh(true)
+
+
   }
 
   const handleCancel = () => {
@@ -75,9 +81,16 @@ function ModificarTurno() {
     fetchData()
   }
 
-  const editar = () => {
+  const editar = (id,fecha, hora) => {
+    const data = {
+      fechaTurno: fecha,
+      horaTurno: hora
+    }
+
+console.log(data)
+
     const fetchData = async () => {
-      const response = await swService.editarTurno()
+      const response = await swService.editarTurno(id,data)
       console.log('Respuesta del server', response)
     }
     fetchData()
@@ -92,15 +105,16 @@ function ModificarTurno() {
     fetchData()
   }
 
-  const fechaChange = (dateString) => {
+  const fechaChange = (date, dateString) => {
     
     setFecha(dateString)
     console.log('Hola',dateString);
   }
-  const horaChange = (value) => {
 
-    setHora(value)
-    console.log(value);
+  const horaChange = (date, dateString) => {
+    console.log('Hola',dateString);
+    setHora(dateString)
+    console.log(dateString);
   }
 
   return (
@@ -122,8 +136,9 @@ function ModificarTurno() {
           <DatePicker showTime format="YYYY-MM-DD" 
           onChange={fechaChange}/>
 
+
           <p>Hora</p>
-          <TimePicker format="HH:mm" 
+          <TimePicker showTime format="HH:mm" 
           onChange={horaChange}
           />
 

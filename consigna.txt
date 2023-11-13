@@ -1,3 +1,12 @@
+
+
+//------------------------------------------------------------------
+Dudas 
+    rutas por defecto
+    middleware como acceder a los metodos con autenticacion
+    donde calcular la recaudacion
+//------------------------------------------------------------------
+
 Proyecto final 2023
 Veterinaria
 Condiciones generales para la realización

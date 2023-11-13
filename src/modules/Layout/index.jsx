@@ -26,7 +26,7 @@ function getItem(label, key, icon, children) {
 
 
 const items = [
-  getItem(<Link to="/Recepcion/Alta_mascota"> Alta mascota </Link>, '1', <UserAddOutlined />),
+  getItem(<Link to="/"> Alta mascota </Link>, '1', <UserAddOutlined />),
 
 
 
