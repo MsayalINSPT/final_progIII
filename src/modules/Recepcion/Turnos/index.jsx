@@ -20,7 +20,11 @@ function Turnos() {
     const fetchData = async () => {
       const response = await swService.createTurno(values)
       console.log('Respuesta del server', response)
-      setResponseText(`Respuesta del servidor: ${JSON.stringify(response)}`)
+      //setResponseText(`Respuesta del servidor: ${JSON.stringify(response)}`)
+      if(response){
+        setResponseText('Turno cargado')
+      }
+      
     }
     fetchData()
   }

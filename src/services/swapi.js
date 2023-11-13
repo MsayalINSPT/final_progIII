@@ -10,5 +10,7 @@ swService.createCliente = (cliente) => api.post(`/clients/`,cliente)
 swService.createTurno = (turno) => api.post(`/turno/`, turno)
 swService.getAllTurnos = () => api.get(`/turno`)
 swService.buscarTurnoPorFecha = (fecha) => api.post(`/turno/buscar`, fecha)
+swService.editarTurno = (id,datos) => api.put(`/turno/${id}`,datos)
+swService.borraTurno = (id) => api.delete(`/turno/${id}`)
 
 export default swService

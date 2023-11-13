@@ -4,9 +4,19 @@ import swService from '../../../../services/swapi'
 
 const columns = [
   {
+    title: 'ID',
+    dataIndex: '_id',
+    key: '_id',
+  },
+  {
     title: 'Fecha del Turno',
     dataIndex: 'fechaTurno',
     key: 'fechaTurno',
+  },
+  {
+    title: 'Hora',
+    dataIndex: 'horaTurno',
+    key: 'horaTurno',
   },
   {
     title: 'Nombre del Paciente',
@@ -27,7 +37,6 @@ const columns = [
 
 function BuscarTurno() {
   const [turnos, setTurnos] = useState([''])
-  const [fechaSeleccionada, setFechaSeleccionada] = useState(null);
 
   const onClick = () => {
     const fetchData = async () => {
@@ -55,9 +64,9 @@ function BuscarTurno() {
   return (
     <div>
       <Button type="primary" onClick={() => onClick()}>
-        Todos
+        Traer todos
       </Button>
-
+    <h2>Buscar por fecha </h2>
      <DatePicker showTime format="YYYY-MM-DD" onChange={handleFechaChange} /> 
       <Table
         dataSource={turnos}
