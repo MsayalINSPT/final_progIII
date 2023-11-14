@@ -1,26 +1,22 @@
 import { Button } from 'antd'
 
-import { useEffect } from 'react';
-
+import { useLocation} from 'react-router-dom'
 
 function Logout() {
+  const location = useLocation()
 
-
+  console.log(location)
 
   const salir = () => {
-    localStorage.clear();
-    // Redirige a la ruta predeterminada, por ejemplo, "/login"
-    
-    window.location.reload();
+    localStorage.clear()
+    window.location.reload()
   }
-
 
   return (
     <div>
       <Button type="primary" onClick={() => salir()}>
         Salir del sistema
       </Button>
-
     </div>
   )
 }

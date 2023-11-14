@@ -1,5 +1,5 @@
-import { useState } from 'react'
-import { Outlet } from 'react-router-dom'
+import { useState, useEffect } from 'react'
+import { Outlet, useNavigate } from 'react-router-dom'
 import { Link } from 'react-router-dom'
 import {
   DollarOutlined,
@@ -7,10 +7,8 @@ import {
   UserAddOutlined,
   CloseSquareOutlined,
   EditOutlined,
-  SearchOutlined 
-} 
-
-from '@ant-design/icons'
+  SearchOutlined,
+} from '@ant-design/icons'
 import { Layout, Menu, theme } from 'antd'
 
 const { Header, Content, Footer, Sider } = Layout
@@ -25,7 +23,11 @@ function getItem(label, key, icon, children) {
 }
 
 const items = [
-  getItem(<Link to="/Recepcion/Alta_mascota"> Alta mascota </Link>, '1', <UserAddOutlined />),
+  getItem(
+    <Link to="/Recepcion/Alta_mascota"> Alta mascota </Link>,
+    '1',
+    <UserAddOutlined />
+  ),
 
   getItem(
     <Link to="/Recepcion/Turnos"> Asignar turnos </Link>,
@@ -58,11 +60,16 @@ const items = [
 ]
 
 const App = () => {
-  const textHeader = localStorage.getItem('user')
   const [collapsed, setCollapsed] = useState(false)
   const {
     token: { colorBgContainer },
   } = theme.useToken()
+
+  const navigate = useNavigate()
+  useEffect(() => {
+    navigate('/Recepcion/Alta_mascota')
+  }, [])
+
   return (
     <Layout
       style={{
@@ -92,7 +99,7 @@ const App = () => {
             alignItems: 'center',
           }}
         >
-          <h1>Recepcion {textHeader} </h1>
+          <h1>Recepcion </h1>
         </Header>
         <Content
           style={{

@@ -10,62 +10,18 @@ import LayoutVete from './modules/LayoutVete'
 import NotFound from './modules/NotFound'
 import Cobros from './modules/Recepcion/Cobros'
 import Logout from './modules/Login/Logout'
-
+import RecaudacionVeterinaria from './modules/Veterinario/Recaudacion'
 //------------------------ IMPORT ---------------------------------------
 import { InformePaciente } from './modules/Veterinario/Informe'
 import { Routes, Route, BrowserRouter } from 'react-router-dom'
 import { useState, useEffect } from 'react'
 //import { Formulario } from './components/Formulario'
-import RecaudacionVeterinaria from './modules/Veterinario/Recaudacion'
 
 
 
-
-const Recepcion = () => {
-
-
-
-  return (
-    <BrowserRouter>
-      <Routes>
-        <Route element={<Layout />}>
-          <Route path="Recepcion/Alta_mascota" element={<AltaMascota />} />
-          <Route path="Recepcion/Turnos" element={<Turnos />} />
-          <Route path="Recepcion/Turnos/Buscar" element={<BuscarTurno />} />
-          <Route
-            path="Recepcion/Turnos/Modificar"
-            element={<ModificarTurno />}
-          />
-
-          <Route path="Recepcion/Cobros" element={<Cobros />} />
-          <Route path="Login/Logout" element={<Logout />} />
-          <Route path="*" element={<NotFound />} />
-        </Route>
-      </Routes>
-    </BrowserRouter>
-  )
-}
-
-const Veterinario = () => {
-  return (
-    <BrowserRouter>
-      <Routes>
-        <Route element={<LayoutVete />}>
-          <Route path="Veterinario/Historial" element={<Historial />} />
-          <Route path="Veterinario/Informe" element={<InformePaciente />} />
-          <Route
-            path="Veterinario/Recaudacion"
-            element={<RecaudacionVeterinaria />}
-          />
-          <Route path="Login/Logout" element={<Logout />} />
-          <Route path="*" element={<NotFound />} />
-        </Route>
-      </Routes>
-    </BrowserRouter>
-  )
-}
 //------------------------------- APP -----------------------------------
 function App() {
+    
   const miRol = localStorage.getItem('rol')
   const miToken = localStorage.getItem('miToken')
   const [user, setUser] = useState({
@@ -86,9 +42,42 @@ function App() {
         <Login setUser={setUser} />
       )}
 
-      {user.rol === 'recepcion' && Recepcion()}
+      {user.rol === 'recepcion'  && (
+        <BrowserRouter>
+          <Routes>
+            <Route  element={<Layout />}>
+              <Route path="Recepcion/Alta_mascota" element={<AltaMascota />} />
+              <Route path="Recepcion/Turnos" element={<Turnos />} />
+              <Route path="Recepcion/Turnos/Buscar" element={<BuscarTurno />} />
+              <Route
+                path="Recepcion/Turnos/Modificar"
+                element={<ModificarTurno />}
+              />
 
-      {user.rol === 'veterinario' && Veterinario()}
+              <Route path="Recepcion/Cobros" element={<Cobros />} />
+              <Route path="Login/Logout" element={<Logout />} />
+              <Route path="*" element={<NotFound />} />
+            </Route>
+          </Routes>
+        </BrowserRouter>
+      )}
+
+      {user.rol === 'veterinario' && (
+        <BrowserRouter>
+          <Routes>
+            <Route element={<LayoutVete />}>
+              <Route path="Veterinario/Historial" element={<Historial />} />
+              <Route path="Veterinario/Informe" element={<InformePaciente />} />
+              <Route
+                path="Veterinario/Recaudacion"
+                element={<RecaudacionVeterinaria />}
+              />
+              <Route path="Login/Logout" element={<Logout />} />
+              <Route path="*" element={<NotFound />} />
+            </Route>
+          </Routes>
+        </BrowserRouter>
+      )}
     </div>
   )
 }
