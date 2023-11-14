@@ -29,10 +29,22 @@ export function Formulario({ setUser }) {
     setIsLoading(true)
     
     await validarUsuario({ user })
-    
+  
     setIsLoading(false)
 
     setUser(user)
+
+    if(user.rol === 'recepcion'){
+      window.location.href = "/Recepcion/Alta_mascota"
+    }
+
+    if(user.rol === 'veterinario'){
+      window.location.href = "/Veterinario/Historial"
+    }
+    
+
+
+
   }
 
   return (

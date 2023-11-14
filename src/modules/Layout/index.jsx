@@ -1,5 +1,5 @@
-import { useState, useEffect } from 'react'
-import { Outlet, useNavigate } from 'react-router-dom'
+import { useState } from 'react'
+import { Outlet } from 'react-router-dom'
 import { Link } from 'react-router-dom'
 import {
   DollarOutlined,
@@ -65,10 +65,6 @@ const App = () => {
     token: { colorBgContainer },
   } = theme.useToken()
 
-  const navigate = useNavigate()
-  useEffect(() => {
-    navigate('/Recepcion/Alta_mascota')
-  }, [])
 
   return (
     <Layout
