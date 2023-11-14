@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import { Button } from 'antd'
-import swService from '../../../../services/swapi'
+import turnoService from '../../../../services/swapi'
 import { Space, Table, Modal, TimePicker, DatePicker, /* Select */ } from 'antd'
 
 function ModificarTurno() {
@@ -42,8 +42,10 @@ function ModificarTurno() {
       key: 'action',
       render: (_, record) => (
         <Space size="middle">
-          <a onClick={() => showModal(record._id)}> Editar </a>
-          <a onClick={() => borrar(record._id)}>Borrar</a>
+  {/*         <a onClick={() => showModal(record._id)} style={{ color: 'green' }} > Editar </a> */}
+          <button onClick={() => showModal(record._id)} style={{ color: 'green', cursor: 'pointer' }}>Editar</button>
+          <button onClick={() => borrar(record._id)} style={{ color: 'red', cursor: 'pointer' }}>Borrar</button>
+
         </Space>
       ),
     },
@@ -74,7 +76,7 @@ function ModificarTurno() {
 
   const traerTurnos = () => {
     const fetchData = async () => {
-      const response = await swService.getAllTurnos()
+      const response = await turnoService.getAllTurnos()
       console.log(response)
       setTurnos(response)
     }
@@ -90,7 +92,7 @@ function ModificarTurno() {
 console.log(data)
 
     const fetchData = async () => {
-      const response = await swService.editarTurno(id,data)
+      const response = await turnoService.editarTurno(id,data)
       console.log('Respuesta del server', response)
     }
     fetchData()
@@ -98,7 +100,7 @@ console.log(data)
 
   const borrar = (id) => {
     const fetchData = async () => {
-      const response = await swService.borraTurno(id)
+      const response = await turnoService.borraTurno(id)
       console.log('Respuesta del server', response)
       setRefresh(true)
     }
@@ -119,6 +121,7 @@ console.log(data)
 
   return (
     <div>
+      <h2>Editar borrar turnos</h2>
       <Button type="primary" onClick={() => traerTurnos()}>
         Traer todos
       </Button>

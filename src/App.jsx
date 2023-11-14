@@ -20,11 +20,14 @@ import { useState, useEffect } from 'react'
 import RecaudacionVeterinaria from './modules/Veterinario/Recaudacion'
 
 function recepcion(/* user */) {
+
+  //window.location.href = '../Alta_mascota'
+
   return (
     <BrowserRouter>
       <Routes>
         <Route element={<Layout />}> 
-          <Route path="" default element={<AltaMascota />} />
+          <Route path="" element={<AltaMascota />} />
 
           <Route path="Recepcion/Turnos" element={<Turnos />} />
           <Route path="Recepcion/Turnos/Buscar" element={<BuscarTurno />} />
@@ -79,7 +82,7 @@ function App() {
     <div className="App">
       {user.rol === '' && <Login setUser={setUser} />}
 
-      {user.rol === 'recepcion' && recepcion(user)}
+      {user.rol === 'recepcion' && recepcion(user) }
 
       {user.rol === 'veterinario' && veterinario(user)}
     </div>

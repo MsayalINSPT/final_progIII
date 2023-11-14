@@ -1,6 +1,6 @@
 import { Table, Button, DatePicker } from 'antd'
 import { useState, useEffect } from 'react'
-import swService from '../../../../services/swapi'
+import turnoService from '../../../../services/swapi'
 
 const columns = [
   {
@@ -51,7 +51,7 @@ function BuscarTurno() {
 
   const onClick = () => {
     const fetchData = async () => {
-      const response = await swService.getAllTurnos()
+      const response = await turnoService.getAllTurnos()
       console.log(response)
       setTurnos(response)
     }
@@ -65,7 +65,7 @@ function BuscarTurno() {
 
     const fetchData = async () => {
       const fecha = {fechaTurno: dateString}
-      const response = await swService.buscarTurnoPorFecha(fecha)
+      const response = await turnoService.buscarTurnoPorFecha(fecha)
       console.log(response)
       setTurnos(response)
     }

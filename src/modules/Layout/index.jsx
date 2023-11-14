@@ -2,13 +2,15 @@ import { useState } from 'react'
 import { Outlet } from 'react-router-dom'
 import { Link } from 'react-router-dom'
 import {
-
   DollarOutlined,
   FileDoneOutlined,
   UserAddOutlined,
-  CloseSquareOutlined
+  CloseSquareOutlined,
+  EditOutlined,
+  SearchOutlined 
+} 
 
-} from '@ant-design/icons'
+from '@ant-design/icons'
 import { Layout, Menu, theme } from 'antd'
 
 const { Header, Content, Footer, Sider } = Layout
@@ -19,34 +21,43 @@ function getItem(label, key, icon, children) {
     icon,
     children,
     label,
-  
   }
 }
-
-
 
 const items = [
   getItem(<Link to="/"> Alta mascota </Link>, '1', <UserAddOutlined />),
 
+  getItem(
+    <Link to="/Recepcion/Turnos"> Asignar turnos </Link>,
+    '2',
+    <FileDoneOutlined />,
+    [
+      getItem(
+        <Link to="/Recepcion/Turnos/Buscar"> Buscar Turno </Link>,
+        '3',
+        <SearchOutlined />
+      ),
+      getItem(
+        <Link to="/Recepcion/Turnos/Modificar"> Modificar turno </Link>,
+        '4',
+        <EditOutlined />
+      ),
+    ]
+  ),
 
-
-  getItem(<Link to="/Recepcion/Turnos"> Asignar turnos </Link>, '2', <FileDoneOutlined />,
-  [
-    getItem(<Link to="/Recepcion/Turnos/Buscar"> Buscar Turno </Link>, '3', <FileDoneOutlined />),
-    getItem(<Link to="/Recepcion/Turnos/Modificar"> Modificar turno </Link>, '4', <FileDoneOutlined />),
-
-  ]),
-
-
-  getItem(<Link to="/Recepcion/Cobros"> Cobrar </Link>, '5', <DollarOutlined />),
-  getItem(<Link to="/Login/Logout"> Logout </Link>, '6', <CloseSquareOutlined />),
-
+  getItem(
+    <Link to="/Recepcion/Cobros"> Cobrar </Link>,
+    '5',
+    <DollarOutlined />
+  ),
+  getItem(
+    <Link to="/Login/Logout"> Logout </Link>,
+    '6',
+    <CloseSquareOutlined />
+  ),
 ]
 
-
-
 const App = () => {
-
   const [collapsed, setCollapsed] = useState(false)
   const {
     token: { colorBgContainer },

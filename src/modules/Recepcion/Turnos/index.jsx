@@ -1,14 +1,11 @@
 import { useState } from 'react'
 import { Form, Input, DatePicker, Button } from 'antd'
 import dayjs from 'dayjs'
-import swService from '../../../services/swapi'
-import { Outlet } from 'react-router-dom';
-
-
+import turnoService from '../../../services/swapi'
+import { Outlet } from 'react-router-dom'
 
 function Turnos() {
   const [responseText, setResponseText] = useState('')
- 
 
   const onFinish = (values) => {
     values.estado = 'pendiente'
@@ -18,23 +15,19 @@ function Turnos() {
     console.log(values)
 
     const fetchData = async () => {
-      const response = await swService.createTurno(values)
+      const response = await turnoService.createTurno(values)
       console.log('Respuesta del server', response)
       //setResponseText(`Respuesta del servidor: ${JSON.stringify(response)}`)
-      if(response){
+      if (response) {
         setResponseText('Turno cargado')
       }
-      
     }
     fetchData()
   }
 
-
-
   return (
     <div>
-
-
+      <h2>Cargar turno nuevo</h2>
       <Form
         name="nuevoTurnoForm"
         onFinish={onFinish}

@@ -1,9 +1,19 @@
+import { Button } from 'antd'
+
 function Logout() {
-    return (
-      <div>
-        <h1>Implementar salir del sistema</h1>
-      </div>
-    )
+
+  const recargarPagina = () => {
+
+    window.location.reload()
   }
-  
-  export default Logout
+
+  return (
+    <div>
+      <Button type="primary" onClick={() => recargarPagina()}>
+        Salir del sistema
+      </Button>
+    </div>
+  )
+}
+
+export default Logout

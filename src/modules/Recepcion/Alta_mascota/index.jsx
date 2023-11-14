@@ -21,6 +21,7 @@ function AltaMascota() {
 
   return (
     <div>
+      <h2>Nuevo cliente</h2>
       <Form
         name="wrap"
         labelCol={{
