@@ -4,6 +4,7 @@ import { validarUsuario } from './validacionUsuarios'
 import { Spin } from 'antd'
 
 export function Formulario({ setUser }) {
+  
   const [nombre, setNombre] = useState('')
   const [contrasenia, setContrasenia] = useState('')
   const [error, setError] = useState(false)

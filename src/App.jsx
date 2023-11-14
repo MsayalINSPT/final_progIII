@@ -1,4 +1,4 @@
-import { Routes, Route, BrowserRouter } from 'react-router-dom'
+import { Routes, Route, BrowserRouter,useNavigate } from 'react-router-dom'
 import AltaMascota from './modules/Recepcion/Alta_mascota'
 import Turnos from './modules/Recepcion/Turnos'
 import BuscarTurno from './modules/Recepcion/Turnos/Buscar'
@@ -13,6 +13,7 @@ import { InformePaciente } from './modules/Veterinario/Informe'
 import Historial from './modules/Veterinario/Historial'
 import Login from './modules/Login'
 
+
 import { useState, useEffect } from 'react'
 
 //import { Formulario } from './components/Formulario'
@@ -20,15 +21,16 @@ import { useState, useEffect } from 'react'
 import RecaudacionVeterinaria from './modules/Veterinario/Recaudacion'
 
 function recepcion(/* user */) {
+  
 
   //window.location.href = '../Alta_mascota'
+
 
   return (
     <BrowserRouter>
       <Routes>
         <Route element={<Layout />}> 
-          <Route path="" element={<AltaMascota />} />
-
+          <Route path="Recepcion/Alta_mascota" element={<AltaMascota />} />
           <Route path="Recepcion/Turnos" element={<Turnos />} />
           <Route path="Recepcion/Turnos/Buscar" element={<BuscarTurno />} />
           <Route
@@ -47,6 +49,7 @@ function recepcion(/* user */) {
 
 function veterinario(/* user */) {
   return (
+    
     <BrowserRouter>
       <Routes>
         <Route element={<LayoutVete />}>
@@ -65,22 +68,30 @@ function veterinario(/* user */) {
 }
 //------------------------------- APP -----------------------------------
 function App() {
+
+  const miRol = localStorage.getItem('rol')
+  const miToken = localStorage.getItem('miToken')
   const [user, setUser] = useState({
+
+
     email: '',
     password: '',
-    rol: '',
-    token: '',
+    rol: miRol,
+    token: miToken,
   })
+  console.log(user)
+
+
 
   useEffect(() => {
-    //console.log(user.token)
+    console.log("APP")
     localStorage.setItem('miToken', user.token);
-
+    localStorage.setItem('rol', user.rol);
   }, [user])
 
   return (
     <div className="App">
-      {user.rol === '' && <Login setUser={setUser} />}
+      {((user.rol === 'null') ||(user.rol === null))&& <Login setUser={setUser} />}
 
       {user.rol === 'recepcion' && recepcion(user) }
 

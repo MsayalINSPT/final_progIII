@@ -25,7 +25,7 @@ function getItem(label, key, icon, children) {
 }
 
 const items = [
-  getItem(<Link to="/"> Alta mascota </Link>, '1', <UserAddOutlined />),
+  getItem(<Link to="/Recepcion/Alta_mascota"> Alta mascota </Link>, '1', <UserAddOutlined />),
 
   getItem(
     <Link to="/Recepcion/Turnos"> Asignar turnos </Link>,
@@ -58,6 +58,7 @@ const items = [
 ]
 
 const App = () => {
+  const textHeader = localStorage.getItem('user')
   const [collapsed, setCollapsed] = useState(false)
   const {
     token: { colorBgContainer },
@@ -91,7 +92,7 @@ const App = () => {
             alignItems: 'center',
           }}
         >
-          <h1>Recepcion</h1>
+          <h1>Recepcion {textHeader} </h1>
         </Header>
         <Content
           style={{

@@ -78,7 +78,7 @@ function BuscarTurno() {
         Traer todos
       </Button>
     <h2>Buscar por fecha </h2>
-     <DatePicker showTime format="YYYY-MM-DD" onChange={handleFechaChange} /> 
+     <DatePicker format="YYYY-MM-DD" onChange={handleFechaChange} /> 
       <Table
         dataSource={turnos}
         columns={columns}
