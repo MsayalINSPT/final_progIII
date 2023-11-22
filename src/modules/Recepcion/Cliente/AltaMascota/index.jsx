@@ -1,19 +1,29 @@
 import clienteService from '../../../../services/clienteApi'
 
-import { Form, Input, Button, Select, InputNumber, List } from 'antd'
+import {
+  Form,
+  Input,
+  Button,
+  Select,
+  InputNumber,
+  AutoComplete,
+} from 'antd'
 import { useState, useEffect } from 'react'
 
 const { Option } = Select
 //const { Search } = Input
 
+
+
 function AltaMascota() {
   const [clientes, setClientes] = useState('')
-  const [searchTerm, setSearchTerm] = useState('')
-//----------------------------- FUNCION -----------------------------------
+  const [options, setOptions] = useState([])
+
+  //----------------------------- FUNCION -----------------------------------
   useEffect(() => {
     listarClientes()
   }, [])
-//----------------------------- FUNCION -----------------------------------
+  //----------------------------- FUNCION -----------------------------------
   const listarClientes = () => {
     const fetchData = async () => {
       const response = await clienteService.getAllClientes()
@@ -25,51 +35,44 @@ function AltaMascota() {
   //----------------------------- FUNCION -----------------------------------
   const handleSearch = (value) => {
     console.log(value)
-    
-    const filteredData = clientes.filter(item =>
+
+    const filteredData = clientes.filter((item) =>
       item.name.toLowerCase().includes(value.toLowerCase())
     )
-    setSearchTerm(filteredData);
-    console.log(filteredData)
+    const opc = filteredData.map((a) => ({ value: a.name }))
+    console.log(opc)
+    setOptions(opc)
   }
-//----------------------------- FUNCION -----------------------------------
+  //----------------------------- FUNCION -----------------------------------
 
   //----------------------------- FUNCION -----------------------------------
   const onFinish = (values) => {
     console.log(values)
   }
-//----------------------------- FUNCION -----------------------------------
-  const cambio = (values) => {
-    console.log(values)
-  }
 
+  //----------------------------- FUNCION -----------------------------------
+  const onSelect = (data) => {
+    console.log('onSelect', data)
+    console.log(options)
+  }
 
   return (
     <div>
-      <Input
-        placeholder="Buscar"
-        onChange={(e) => handleSearch(e.target.value)}
-
-      />
-      <List
-        dataSource={searchTerm}
-        renderItem={(item) => (
-          <List.Item key={item.id}>
-            {item.name} {'  '} {item.ape} {'Dni: '} {item.dni}
-            
-            
-          </List.Item>
-        )}
-      />
-    </div>
-  )
-
-
-
-
-/*   return (
-    <div>
       <h2>Nuevo mascota</h2>
+      <Form.Item label=" ">
+        <Button type="primary" htmlType="submit">
+          Alta
+        </Button>
+      </Form.Item>
+      <label>Cliente </label>
+      <AutoComplete
+        options={options}
+        style={{ width: 200 }}
+        onSelect={onSelect}
+        onSearch={(text) => handleSearch(text)}
+        placeholder="Nombre cliente"
+      />
+
       <Form
         name="wrap"
         labelCol={{
@@ -87,7 +90,7 @@ function AltaMascota() {
         onFinish={onFinish}
       >
         <Form.Item
-          label="Nombre"
+          label="Mascota"
           name="name"
           rules={[
             {
@@ -117,19 +120,9 @@ function AltaMascota() {
         <Form.Item label="Edad" name="edad">
           <InputNumber min={1} max={20} placeholder="Indique edad" />
         </Form.Item>
-
-        <Form.Item label="Dueño" name="cliente_id">
-          <Input onChange={cambio} placeholder="DNI cliente" />
-        </Form.Item>
-
-        <Form.Item label=" ">
-          <Button type="primary" htmlType="submit">
-            Alta
-          </Button>
-        </Form.Item>
       </Form>
     </div>
-  ) */
+  )
 }
 
 export default AltaMascota
