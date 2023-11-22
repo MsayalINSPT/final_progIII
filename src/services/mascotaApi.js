@@ -3,7 +3,7 @@ import api from './api'
 const mascotaService = {}
 
 
-mascotaService.getAllTurnos = () => api.get(`/mascota`)
+mascotaService.createMascota = (mascota) => api.post(`/mascota/`, mascota)
 
 
 export default mascotaService

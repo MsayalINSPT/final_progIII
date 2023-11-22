@@ -1,23 +1,17 @@
 import clienteService from '../../../../services/clienteApi'
+import mascotaService from '../../../../services/mascotaApi'
 
-import {
-  Form,
-  Input,
-  Button,
-  Select,
-  InputNumber,
-  AutoComplete,
-} from 'antd'
+import { Form, Input, Button, Select, InputNumber, AutoComplete } from 'antd'
 import { useState, useEffect } from 'react'
 
 const { Option } = Select
 //const { Search } = Input
 
-
-
 function AltaMascota() {
   const [clientes, setClientes] = useState('')
   const [options, setOptions] = useState([])
+  const [dueno, setDueno]  = useState()
+  const [nombre, setNombre] = useState()
 
   //----------------------------- FUNCION -----------------------------------
   useEffect(() => {
@@ -34,44 +28,44 @@ function AltaMascota() {
   }
   //----------------------------- FUNCION -----------------------------------
   const handleSearch = (value) => {
-    console.log(value)
-
-    const filteredData = clientes.filter((item) =>
-      item.name.toLowerCase().includes(value.toLowerCase())
-    )
-    const opc = filteredData.map((a) => ({ value: a.name }))
-    console.log(opc)
+    const filteredData = clientes.filter((item) => item.dni.includes(value))
+    const opc = filteredData.map((a) => ({ value: a.dni }))
     setOptions(opc)
   }
   //----------------------------- FUNCION -----------------------------------
 
   //----------------------------- FUNCION -----------------------------------
   const onFinish = (values) => {
+
+    values.cliente_id = dueno[0]._id
     console.log(values)
+
+    const fetchData = async () =>{
+      const response = await mascotaService.createMascota(values)
+      console.log(response)
+      
+    }
+    fetchData()
+
   }
 
   //----------------------------- FUNCION -----------------------------------
   const onSelect = (data) => {
-    console.log('onSelect', data)
-    console.log(options)
+    const clienteSeleccionado = clientes.filter(function (elemento) {
+      return elemento.dni === data
+    })
+
+    //console.log(clienteSeleccionado)
+    setDueno(clienteSeleccionado)
+    setNombre(clienteSeleccionado[0].name + ' ' + clienteSeleccionado[0].ape)
+
   }
 
   return (
     <div>
       <h2>Nuevo mascota</h2>
-      <Form.Item label=" ">
-        <Button type="primary" htmlType="submit">
-          Alta
-        </Button>
-      </Form.Item>
-      <label>Cliente </label>
-      <AutoComplete
-        options={options}
-        style={{ width: 200 }}
-        onSelect={onSelect}
-        onSearch={(text) => handleSearch(text)}
-        placeholder="Nombre cliente"
-      />
+
+      <label>Cliente {nombre}</label>
 
       <Form
         name="wrap"
@@ -89,6 +83,14 @@ function AltaMascota() {
         }}
         onFinish={onFinish}
       >
+        <AutoComplete
+          options={options}
+          style={{ width: 100 }}
+          onSelect={onSelect}
+          onSearch={(text) => handleSearch(text)}
+          placeholder="DNI cliente"
+        />
+
         <Form.Item
           label="Mascota"
           name="name"
@@ -120,6 +122,10 @@ function AltaMascota() {
         <Form.Item label="Edad" name="edad">
           <InputNumber min={1} max={20} placeholder="Indique edad" />
         </Form.Item>
+
+        <Button type="primary" htmlType="submit" onSubmit={onFinish}>
+          Alta
+        </Button>
       </Form>
     </div>
   )
