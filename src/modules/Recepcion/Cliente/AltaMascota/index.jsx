@@ -12,6 +12,7 @@ function AltaMascota() {
   const [options, setOptions] = useState([])
   const [dueno, setDueno]  = useState()
   const [nombre, setNombre] = useState()
+  const [texto, setTexto] = useState()
 
   //----------------------------- FUNCION -----------------------------------
   useEffect(() => {
@@ -38,11 +39,12 @@ function AltaMascota() {
   const onFinish = (values) => {
 
     values.cliente_id = dueno[0]._id
-    console.log(values)
+    //console.log(values)
 
     const fetchData = async () =>{
       const response = await mascotaService.createMascota(values)
-      console.log(response)
+      console.log(response.name)
+      setTexto('Mascota: ' + response.name + ' Cargada')
       
     }
     fetchData()
@@ -126,6 +128,8 @@ function AltaMascota() {
         <Button type="primary" htmlType="submit" onSubmit={onFinish}>
           Alta
         </Button>
+
+        <label>{texto}</label>
       </Form>
     </div>
   )
