@@ -1,6 +1,6 @@
 import { Table, Button, DatePicker } from 'antd'
 import { useState, useEffect } from 'react'
-import turnoService from '../../../../services/swapi'
+import turnoService from '../../../../services/turnoApi'
 
 const columns = [
   {
@@ -35,8 +35,6 @@ const columns = [
   },
 ]
 
-
-
 function BuscarTurno() {
   const [turnos, setTurnos] = useState([''])
   const [refresh, setRefresh] = useState(false)
@@ -59,14 +57,13 @@ function BuscarTurno() {
   }
 
   const handleFechaChange = (date, dateString) => {
-
     //setFechaSeleccionada(dateString);
-    //console.log(dateString)
+    console.log(dateString)
 
     const fetchData = async () => {
-      const fecha = {fechaTurno: dateString}
+      const fecha = { fechaTurno: dateString }
       const response = await turnoService.buscarTurnoPorFecha(fecha)
-      console.log(response)
+      //console.log(response)
       setTurnos(response)
     }
     fetchData()
@@ -74,11 +71,15 @@ function BuscarTurno() {
 
   return (
     <div>
-      <Button type="primary" onClick={() => onClick()}>
-        Traer todos
-      </Button>
-    <h2>Buscar por fecha </h2>
-     <DatePicker format="YYYY-MM-DD" onChange={handleFechaChange} /> 
+      <div style={{ display: 'flex', alignItems: 'center' }}>
+        <h2>Buscar por fecha -- </h2>
+        <DatePicker format="YYYY-MM-DD" onChange={handleFechaChange} />
+        <Button type="primary" onClick={() => onClick()}>
+          Traer todos
+        </Button>
+        
+      </div>
+
       <Table
         dataSource={turnos}
         columns={columns}

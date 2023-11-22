@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
-import { Button } from 'antd'
-import turnoService from '../../../../services/swapi'
+//import { Button } from 'antd'
+import turnoService from '../../../../services/turnoApi'
 import { Space, Table, Modal, TimePicker, DatePicker, /* Select */ } from 'antd'
 
 function ModificarTurno() {
@@ -122,9 +122,7 @@ console.log(data)
   return (
     <div>
       <h2>Editar borrar turnos</h2>
-      <Button type="primary" onClick={() => traerTurnos()}>
-        Traer todos
-      </Button>
+
       <Table columns={columns} dataSource={turnos} />
 
       <>

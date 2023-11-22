@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { Form, Input, DatePicker, Button } from 'antd'
 import dayjs from 'dayjs'
-import turnoService from '../../../services/swapi'
+import turnoService from '../../../services/userApi'
 import { Outlet } from 'react-router-dom'
 
 function Turnos() {

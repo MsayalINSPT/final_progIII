@@ -19,7 +19,7 @@ api.interceptors.request.use(
     // }
 
     const tokenUsuario = localStorage.getItem('miToken')
-    console.log(tokenUsuario)
+    //console.log(tokenUsuario)
     if (tokenUsuario) {
       
       //config.headers.common.Authorization = `${tokenUsuario}`

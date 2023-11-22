@@ -24,24 +24,28 @@ function getItem(label, key, icon, children) {
 
 const items = [
   getItem(
-    <Link to="/Recepcion/Alta_mascota"> Alta mascota </Link>,
+    <Link to="/Recepcion/Cliente"> Alta cliente </Link>,
     '1',
-    <UserAddOutlined />
+    <UserAddOutlined />,[
+      getItem(<Link to="/Recepcion/Cliente/AltaMascota">Alta mascota</Link>, '2', <UserAddOutlined />),
+      getItem(<Link to="/Recepcion/Cliente/Listar">Listar clientes</Link>, '3', <UserAddOutlined />)
+
+    ]
   ),
 
   getItem(
     <Link to="/Recepcion/Turnos"> Asignar turnos </Link>,
-    '2',
+    '4',
     <FileDoneOutlined />,
     [
       getItem(
         <Link to="/Recepcion/Turnos/Buscar"> Buscar Turno </Link>,
-        '3',
+        '5',
         <SearchOutlined />
       ),
       getItem(
         <Link to="/Recepcion/Turnos/Modificar"> Modificar turno </Link>,
-        '4',
+        '6',
         <EditOutlined />
       ),
     ]
@@ -49,12 +53,12 @@ const items = [
 
   getItem(
     <Link to="/Recepcion/Cobros"> Cobrar </Link>,
-    '5',
+    '7',
     <DollarOutlined />
   ),
   getItem(
     <Link to="/Login/Logout"> Logout </Link>,
-    '6',
+    '8',
     <CloseSquareOutlined />
   ),
 ]
