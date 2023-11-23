@@ -62,6 +62,7 @@ function Turnos() {
     const dueno = clienteSeleccionado[0]
     console.log(dueno)
     buscarMascotas(dueno._id)
+    
     // setDueno(clienteSeleccionado)
     // setNombre(clienteSeleccionado[0].name + ' ' + clienteSeleccionado[0].ape)
 
