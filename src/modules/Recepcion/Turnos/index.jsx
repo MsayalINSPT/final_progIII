@@ -15,13 +15,6 @@ function Turnos() {
   const [opcionSeleccionada, setOpcionSeleccionada] = useState('')
   const [mascotas, setMascotas] = useState([])
 
-  const opciones = {
-    opcion1: 'Opción 1',
-    opcion2: 'Opción 2',
-    opcion3: 'Opción 3',
-  }
-
-
   useEffect(() => {
     listarClientes()
   }, [])
@@ -37,12 +30,13 @@ function Turnos() {
 
    //----------------------------- FUNCION -----------------------------------
    const buscarMascotas = (_id) =>{
-    console.log(_id)
+    
     const idBuscado = {cliente_id: _id}
     const fetchData = async () => {
       const response = await mascotaService.buscarMascotas(idBuscado)
-      console.log(response)
+      console.log('respuesta',response)
       setMascotas(response)
+      console.log('mascotas',mascotas)
     }
     fetchData()
    }
@@ -127,14 +121,20 @@ function Turnos() {
         onChange={(value) => setOpcionSeleccionada(value)}
         style={{ width: 200 }}
       >
-        {Object.entries(opciones).map(([name, valor]) => (
-          <Option key={name} value={name}>
-            {valor}
+        {mascotas.length > 0 ? (
+        mascotas.map((item) => (
+          <Option key={item._id} value={item._id}>
+            {`${item.name} - ${item.clase}`}
           </Option>
-        ))}
+        ))
+      ) : (
+        <Option value={undefined} disabled>
+          No hay opciones disponibles
+        </Option>
+      )}
       </Select>
-
-      <p>Opción seleccionada: {opcionSeleccionada}</p>
+      <br/>
+      <br/>
     </div>
 
         <Form.Item
