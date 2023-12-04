@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import { Form, Input, DatePicker, Button, AutoComplete, Select } from 'antd'
 import dayjs from 'dayjs'
-import turnoService from '../../../services/userApi'
+import turnoService from '../../../services/turnoApi'
 import clienteService from '../../../services/clienteApi'
 import { Outlet } from 'react-router-dom'
 import mascotaService from '../../../services/mascotaApi'
@@ -63,21 +63,29 @@ function Turnos() {
   }
  //----------------------------- FUNCION -----------------------------------
   const onFinish = (values) => {
-    values.estado = 'pendiente'
+
+    
+ 
+    
     const fechaISO8601 = values.fechaTurno
     values.fechaTurno = dayjs(fechaISO8601).format('YYYY-MM-DD')
     values.horaTurno = dayjs(fechaISO8601).format('HH:mm')
+    values.nombrePaciente = opcionSeleccionada.name
+    values.estado = 'pendiente'
+    values.mascota_id = opcionSeleccionada
+    
+  
     console.log(values)
 
-    const fetchData = async () => {
-      const response = await turnoService.createTurno(values)
-      console.log('Respuesta del server', response)
-      //setResponseText(`Respuesta del servidor: ${JSON.stringify(response)}`)
-      if (response) {
-        setResponseText('Turno cargado')
-      }
-    }
-    fetchData()
+    // const fetchData = async () => {
+    //   const response = await turnoService.createTurno(values)
+    //   console.log('Respuesta del server', response)
+    //   setResponseText(`Respuesta del servidor: ${JSON.stringify(response)}`)
+    //   if (response) {
+    //     setResponseText('Turno cargado')
+    //   }
+    // }
+    // fetchData()
   }
 
   return (
